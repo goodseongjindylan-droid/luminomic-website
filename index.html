@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luminomics — Oncology AI Platform</title>
+<meta name="description" content="Luminomics delivers AI-powered clinical decision support for oncologists worldwide, synthesizing evidence from global cancer literature in real time.">
+<meta property="og:title" content="Luminomics — Oncology AI Platform">
+<meta property="og:description" content="AI-powered clinical decision support for oncologists worldwide.">
+<meta property="og:url" content="https://luminomics.health">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0B1930;
+    --blue:   #1246A0;
+    --sky:    #3B82F6;
+    --teal:   #0891B2;
+    --mint:   #CCFBF1;
+    --white:  #FFFFFF;
+    --cream:  #F8F7F4;
+    --gray:   #6B7280;
+    --border: #E5E7EB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--sky); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500;
+    color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy); color: var(--white);
+    border: none; border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--blue); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 160px 48px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--mint);
+    color: var(--teal);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--teal);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 5.5vw, 72px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--navy);
+    max-width: 800px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sky);
+  }
+  .hero-sub {
+    font-size: 20px; font-weight: 300;
+    color: var(--gray);
+    max-width: 560px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy); color: var(--white);
+    border: none; border-radius: 10px;
+    padding: 16px 32px;
+    font-size: 16px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--navy);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 15px 28px;
+    font-size: 16px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--navy); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--navy);
+    padding: 36px 48px;
+    margin-top: 80px;
+  }
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--sky); }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--sky);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--navy);
+    max-width: 560px;
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--gray);
+    max-width: 480px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .feature-card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(11,25,48,0.08);
+  }
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: var(--navy);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+  .feature-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .feature-card p {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-bg {
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+  }
+  .step { padding: 0 24px; text-align: center; position: relative; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    position: relative; z-index: 1;
+  }
+  .step h4 {
+    font-size: 16px; font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .step p {
+    font-size: 14px; color: var(--gray);
+    font-weight: 300; line-height: 1.6;
+  }
+
+  /* ── EVIDENCE CARD ── */
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 60px;
+  }
+  .evidence-visual {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .evidence-visual::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%);
+  }
+  .ev-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ev-paper {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+  .ev-paper-title {
+    font-size: 13px; font-weight: 500;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .ev-paper-meta {
+    display: flex; gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+  .ev-badge {
+    background: rgba(59,130,246,0.2);
+    color: var(--sky);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .evidence-text { padding: 0 12px; }
+  .evidence-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .evidence-text p {
+    font-size: 16px; color: var(--gray);
+    font-weight: 300; line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .ev-list { list-style: none; margin-top: 28px; }
+  .ev-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 15px; color: var(--navy);
+    margin-bottom: 12px; font-weight: 400;
+  }
+  .ev-list li::before {
+    content: '→';
+    color: var(--sky);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── USE CASES ── */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+  .case-card {
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 26px;
+    transition: border-color 0.2s;
+  }
+  .case-card:hover { border-color: var(--sky); }
+  .case-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--sky);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .case-card h4 {
+    font-size: 17px; font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .case-card p {
+    font-size: 14px; color: var(--gray);
+    font-weight: 300; line-height: 1.65;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--navy);
+    padding: 100px 48px;
+    text-align: center;
+  }
+  .cta-inner { max-width: 640px; margin: 0 auto; }
+  .cta-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    margin-bottom: 20px;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--sky); }
+  .cta-section p {
+    font-size: 17px; color: rgba(255,255,255,0.5);
+    font-weight: 300; margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .btn-white {
+    background: var(--white); color: var(--navy);
+    border: none; border-radius: 10px;
+    padding: 18px 40px;
+    font-size: 16px; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 48px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: var(--white);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--sky); }
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hero { padding: 120px 24px 60px; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .section { padding: 60px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .steps::before { display: none; }
+    .evidence-grid { grid-template-columns: 1fr; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 60px 24px; }
+    footer { padding: 30px 24px; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Lumino<span>mics</span></a>
+  <ul class="nav-links">
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#usecases">Use Cases</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:contact@luminomics.health" class="nav-cta">Request Access</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Now in Beta</div>
+  <h1>
+    Clinical AI for<br>
+    <em>oncologists</em><br>
+    worldwide.
+  </h1>
+  <p class="hero-sub">
+    Luminomics synthesizes evidence from 300,000+ cancer research papers to deliver real-time, literature-backed clinical decision support at the point of care.
+  </p>
+  <div class="hero-actions">
+    <a href="mailto:contact@luminomics.health" class="btn-primary">Request Early Access</a>
+    <a href="#platform" class="btn-secondary">Learn More ↓</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">300<span>K+</span></div>
+      <div class="stat-label">Cancer research papers indexed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label">Cancer types covered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">92</div>
+      <div class="stat-label">Evidence clusters discovered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><span>≤</span>3<span>s</span></div>
+      <div class="stat-label">Average query response time</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLATFORM -->
+<div id="platform">
+<div class="section">
+  <div class="section-tag">// Platform</div>
+  <h2 class="section-title">Built for the way oncologists actually work</h2>
+  <p class="section-sub">Every feature designed around real clinical workflows — not lab benchmarks.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <h3>Evidence-First Search</h3>
+      <p>Semantic search across 300,000+ papers with BGE Cross-Encoder reranking. Ranked by clinical relevance, not keyword match.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧬</div>
+      <h3>Mutation-Aware Matching</h3>
+      <p>KRAS · BRAF · MSI-H · HER2 · NTRK — biomarker-specific evidence retrieval with 6-dimensional case matching.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3>NCCN/ASCO Integration</h3>
+      <p>Real-time guideline cross-referencing. Every recommendation is grounded in Category 1 evidence from leading guidelines.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💊</div>
+      <h3>Drug Safety Checks</h3>
+      <p>Automatic interaction screening across oncology regimens. Age-adjusted dose recommendations with renal function considerations.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧪</div>
+      <h3>Clinical Trial Matching</h3>
+      <p>Live clinicaltrials.gov integration. Matches patients to open trials by mutation, stage, line of therapy, and geography.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>5-Tier Evidence Grading</h3>
+      <p>Automated trust scoring across 45,000+ papers. Retracted literature flagged. Grade A–C evidence clearly distinguished.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-bg" id="evidence">
+<div class="section">
+  <div class="section-tag">// How it works</div>
+  <h2 class="section-title">From question to decision in seconds</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Ask in plain language</h4>
+      <p>Describe your patient — mutation, stage, line of therapy, comorbidities.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>AI searches the evidence</h4>
+      <p>Semantic search + HyDE expansion retrieves the most relevant papers globally.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Evidence is ranked & verified</h4>
+      <p>Cross-Encoder reranking and 5-tier trust scoring filter noise and flag retracted studies.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Structured recommendation</h4>
+      <p>Receive a NCCN-grounded recommendation with citations, cautions, and open trials.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EVIDENCE CARD -->
+<div class="section">
+  <div class="evidence-grid">
+    <div class="evidence-visual">
+      <div class="ev-label">// Live query example</div>
+
+      <div class="ev-paper">
+        <div class="ev-paper-title">Pembrolizumab vs. bevacizumab in MSI-H/dMMR metastatic CRC (KEYNOTE-177)</div>
+        <div class="ev-paper-meta">
+          <span>NEJM 2020</span>
+          <span class="ev-badge">Grade A</span>
+          <span>Sim: 0.903</span>
+        </div>
+      </div>
+
+      <div class="ev-paper">
+        <div class="ev-paper-title">Nivolumab + ipilimumab in MSI-H/dMMR mCRC (CheckMate-142)</div>
+        <div class="ev-paper-meta">
+          <span>J Clin Oncol 2020</span>
+          <span class="ev-badge">Grade A</span>
+          <span>Sim: 0.888</span>
+        </div>
+      </div>
+
+      <div class="ev-paper">
+        <div class="ev-paper-title">Efficacy of pembrolizumab in MSS, TMB-high metastatic CRC</div>
+        <div class="ev-paper-meta">
+          <span>Cancer 2021</span>
+          <span class="ev-badge">Grade B</span>
+          <span>Sim: 0.767</span>
+        </div>
+      </div>
+
+      <div style="margin-top:20px; padding: 14px 18px; background: rgba(56,189,248,0.08); border-radius: 8px; border: 1px solid rgba(56,189,248,0.15);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:8px;">RECOMMENDATION</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.5;">Primary: <strong style="color:#fff">Pembrolizumab 200mg Q3W</strong> — first-line for MSI-H/dMMR mCRC <span style="color:#38bdf8; font-size:11px;">[STRONG · HIGH]</span></div>
+      </div>
+    </div>
+
+    <div class="evidence-text">
+      <h3>Every answer backed by traceable evidence</h3>
+      <p>Luminomics doesn't generate opinions — it retrieves, ranks, and synthesizes published evidence, then presents it in a structured clinical format with full citation trails.</p>
+      <p>Retracted papers are automatically excluded. Evidence grades are transparent. You always know exactly why a recommendation was made.</p>
+      <ul class="ev-list">
+        <li>Automatic retraction detection across all indexed papers</li>
+        <li>Recommendation strength aligned with GRADE methodology</li>
+        <li>Full PMID citations for every clinical statement</li>
+        <li>Drug interaction screening with dose-adjustment alerts</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- USE CASES -->
+<div id="usecases" style="background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<div class="section">
+  <div class="section-tag">// Use cases</div>
+  <h2 class="section-title">Designed for every oncology context</h2>
+
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-tag">01 · TREATMENT SELECTION</div>
+      <h4>First & second-line therapy</h4>
+      <p>Compare FOLFOX, FOLFIRI, immunotherapy, and targeted regimens for any mutation profile with current evidence and trial data.</p>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">02 · ELDERLY PATIENTS</div>
+      <h4>Geriatric dose optimization</h4>
+      <p>Age-adjusted recommendations with renal function considerations, frailty scoring, and comorbidity-aware drug interaction alerts.</p>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">03 · BIOMARKER QUERIES</div>
+      <h4>Precision oncology support</h4>
+      <p>Instant evidence synthesis for KRAS G12C, BRAF V600E, MSI-H/dMMR, HER2, NTRK fusions, and emerging biomarkers.</p>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">04 · TRIAL MATCHING</div>
+      <h4>Clinical trial eligibility</h4>
+      <p>Real-time matching to recruiting trials worldwide by mutation, stage, prior therapy, and geographic location.</p>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">05 · GUIDELINE LOOKUP</div>
+      <h4>NCCN/ASCO at a glance</h4>
+      <p>Instant access to Category 1 recommendations from NCCN and ASCO guidelines, cross-referenced with primary literature.</p>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">06 · SAFETY REVIEW</div>
+      <h4>Pre-prescription drug check</h4>
+      <p>Automated screening for high-risk interactions — warfarin + fluorouracil, bevacizumab + anticoagulants, and more.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div id="contact" class="cta-section">
+  <div class="cta-inner">
+    <h2>Ready to bring <em>evidence</em><br>to every decision?</h2>
+    <p>Luminomics is currently in private beta. We are onboarding oncologists and cancer centers for early access.</p>
+    <a href="mailto:contact@luminomics.health" class="btn-white">Request Early Access →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Lumino<span>mics</span></a>
+    <div class="footer-links">
+      <a href="mailto:contact@luminomics.health">contact@luminomics.health</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <div class="footer-copy">© 2026 Luminomics. For informational purposes only.</div>
+  </div>
+</footer>
+
+</body>
+</html>
