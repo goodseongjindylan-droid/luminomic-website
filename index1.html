@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="OncoSignal — A clinical decision companion for practicing oncologists. Every patient deserves a top oncologist's care.">
+<meta name="keywords" content="oncology AI, clinical decision support, vertical AI, OncoSignal, Luminomics, decision companion for oncologists">
+
+<!-- Open Graph -->
+<meta property="og:title" content="OncoSignal — Every patient deserves a top oncologist's care.">
+<meta property="og:description" content="A clinical decision companion for practicing oncologists. Built around four guarantees that make clinical AI trustworthy.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luminomics.health">
+
+<title>OncoSignal — Every patient deserves a top oncologist's care.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink-green:    #0d2926;
+  --deep-green:   #1a3d3a;
+  --brand:        #1f4d4a;
+  --mid-green:    #3a6864;
+  --accent:       #c2825a;
+  --accent-soft:  #d4a282;
+  --cream:        #f5efe3;
+  --cream-warm:   #e8dfcc;
+  --ink:          #1a1a1a;
+  --ink-soft:     #3a3a3a;
+  --ink-muted:    #6e6a62;
+  --ink-light:    #a09a8e;
+  --line-light:   #d4cdbf;
+  --line-dark:    #2e5552;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'PT Serif', Cambria, Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+}
+.sans {
+  font-family: 'Inter', 'Calibri Light', system-ui, sans-serif;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+header {
+  border-bottom: 1px solid var(--line-light);
+  padding: 1.25rem 0;
+  background: rgba(245, 239, 227, 0.92);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.container-narrow {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--brand);
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.brand-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-left: 5px;
+  vertical-align: super;
+  font-size: 0.5em;
+}
+
+nav { display: flex; align-items: center; }
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--brand); }
+
+.cta-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--brand);
+  color: var(--cream);
+  padding: 0.65rem 1.4rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin-left: 2rem;
+  letter-spacing: 0.02em;
+}
+.cta-btn:hover { background: var(--ink-green); }
+
+/* =========================================================
+   SHARED — eyebrow, section labels, headings
+   ========================================================= */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.eyebrow-dark {
+  color: var(--accent);
+}
+.eyebrow-dark::before { background: var(--accent); }
+
+h1 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+h1 em {
+  font-style: italic;
+  color: var(--brand);
+  font-weight: 400;
+}
+h1.on-dark { color: var(--cream); }
+h1.on-dark em { color: var(--accent); }
+
+h2 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+h2 em {
+  font-style: italic;
+  color: var(--brand);
+  font-weight: 400;
+}
+h2.on-dark { color: var(--cream); }
+h2.on-dark em { color: var(--accent); }
+
+h3 {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+}
+h3.on-dark { color: var(--cream); }
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 720px;
+}
+.lead.on-dark { color: var(--cream-warm); }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  padding: 7rem 0 6rem;
+  border-bottom: 1px solid var(--line-light);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(31, 77, 74, 0.05), transparent 65%);
+  pointer-events: none;
+}
+
+.hero-lead {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 720px;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.95rem 1.7rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  display: inline-block;
+}
+.btn-primary {
+  background: var(--brand);
+  color: var(--cream);
+  border-color: var(--brand);
+}
+.btn-primary:hover { background: var(--ink-green); border-color: var(--ink-green); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--brand);
+  border-color: var(--brand);
+}
+.btn-secondary:hover { background: var(--brand); color: var(--cream); }
+
+/* =========================================================
+   PULL-QUOTE PROBLEM SECTION
+   ========================================================= */
+.problem-section {
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.pull-quote {
+  font-family: 'PT Serif', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 1000px;
+  margin-bottom: 2rem;
+}
+.pull-quote em {
+  font-style: italic;
+  color: var(--brand);
+  font-weight: 400;
+}
+
+.problem-sub {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  max-width: 720px;
+}
+
+/* =========================================================
+   DARK SECTION — Trust Asymmetry hero stat
+   ========================================================= */
+.dark-section {
+  padding: 6rem 0;
+  background: var(--ink-green);
+  color: var(--cream);
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+  position: relative;
+}
+
+.trust-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+.hero-stat {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  line-height: 1;
+  color: var(--cream);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--cream-warm);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 100px;
+  background: var(--line-dark);
+}
+
+.hero-stat-counter {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+}
+
+.hero-stat-counter-sub {
+  font-family: 'PT Serif', serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.25;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.trust-evidence {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--cream-warm);
+  font-style: italic;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 2rem;
+  margin-top: 3rem;
+  max-width: 900px;
+}
+
+/* =========================================================
+   GUARANTEES SECTION (light)
+   ========================================================= */
+.guarantees-section {
+  padding: 7rem 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.guarantee-list {
+  margin-top: 4rem;
+}
+
+.guarantee-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1.2fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line-light);
+  align-items: start;
+}
+.guarantee-row:last-child {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.guarantee-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.guarantee-head {
+  font-family: 'PT Serif', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.guarantee-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   INPUT MODES (dark)
+   ========================================================= */
+.modes-section {
+  padding: 7rem 0;
+  background: var(--ink-green);
+  color: var(--cream);
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.modes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.mode-block { }
+.mode-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.mode-label::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.mode-title {
+  font-family: 'PT Serif', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.mode-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: var(--cream-warm);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.example-box {
+  background: var(--deep-green);
+  border-left: 3px solid var(--accent);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+}
+.example-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ink-light);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.example-text {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--cream);
+}
+
+.field-list {
+  list-style: none;
+  padding: 0;
+}
+.field-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: var(--cream);
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+.field-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+.modes-footer-note {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-dark);
+}
+
+/* =========================================================
+   PATIENT COMPANION (light)
+   ========================================================= */
+.companion-section {
+  padding: 7rem 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.companion-lead {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  max-width: 900px;
+  margin-bottom: 3rem;
+}
+
+.feature-list { margin-top: 2rem; }
+.feature-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1.4fr;
+  gap: 2rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--line-light);
+  align-items: start;
+}
+.feature-row:last-child {
+  border-bottom: 1px solid var(--line-light);
+}
+.feature-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.feature-head {
+  font-family: 'PT Serif', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.feature-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   WHY NOW (light) — 3 columns
+   ========================================================= */
+.why-section {
+  padding: 7rem 0;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.why-block { }
+.why-num {
+  font-family: 'PT Serif', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.why-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.why-head {
+  font-family: 'PT Serif', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+.why-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   MARKET (light, hero numbers)
+   ========================================================= */
+.market-section {
+  padding: 7rem 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.market-hero {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 3rem;
+  margin: 4rem 0 3rem;
+  align-items: start;
+}
+.market-divider {
+  background: var(--line-light);
+  align-self: stretch;
+}
+
+.market-stat {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--brand);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.7rem;
+}
+.market-stat sup {
+  font-size: 0.5em;
+  color: var(--accent);
+  vertical-align: super;
+}
+.market-stat-desc {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.benchmark-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line-light);
+}
+.benchmark-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+.benchmark-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.benchmark-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.benchmark-stat {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: var(--brand);
+  letter-spacing: -0.02em;
+}
+.benchmark-stat sup {
+  font-size: 0.55em;
+  color: var(--accent);
+  vertical-align: super;
+}
+.benchmark-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+.benchmark-conclusion {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--brand);
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
+/* =========================================================
+   ROADMAP (light)
+   ========================================================= */
+.roadmap-section {
+  padding: 7rem 0;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 4rem 0 3rem;
+}
+
+.roadmap-stage { }
+.roadmap-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+.roadmap-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--ink);
+  margin-bottom: 1rem;
+}
+.roadmap-title {
+  font-family: 'PT Serif', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 0.9rem;
+}
+.roadmap-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.roadmap-emphasis {
+  background: var(--cream);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+}
+.roadmap-emphasis-text {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+/* =========================================================
+   MANIFESTO (dark, climax)
+   ========================================================= */
+.manifesto-section {
+  padding: 8rem 0;
+  background: var(--ink-green);
+  color: var(--cream);
+}
+
+.manifesto-line {
+  font-family: 'PT Serif', serif;
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+.manifesto-line.dark-text { color: var(--cream); }
+.manifesto-line.accent-text {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.manifesto-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 0;
+  position: relative;
+}
+.manifesto-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+}
+.manifesto-closing {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--cream-warm);
+  line-height: 1.55;
+  max-width: 800px;
+}
+
+/* =========================================================
+   WAITLIST (light)
+   ========================================================= */
+.waitlist-section {
+  padding: 7rem 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.waitlist-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.waitlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--cream-warm);
+  padding: 2.5rem;
+  border-left: 3px solid var(--brand);
+}
+
+.form-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.form-input, .form-select {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line-light);
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--brand);
+}
+
+.btn-waitlist {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--brand);
+  color: var(--cream);
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  text-decoration: none;
+  border: 1px solid var(--brand);
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+}
+.btn-waitlist:hover { background: var(--ink-green); border-color: var(--ink-green); }
+
+.form-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-top: 0.5rem;
+}
+
+.form-success {
+  display: none;
+  padding: 1rem 1.25rem;
+  background: rgba(194, 130, 90, 0.15);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.form-success.visible { display: block; }
+
+/* =========================================================
+   FOOTNOTES + FOOTER
+   ========================================================= */
+.footnotes {
+  padding: 2.5rem 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line-light);
+}
+.footnotes p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  line-height: 1.65;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+footer {
+  padding: 3rem 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line-light);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-brand {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 980px) {
+  .container, .container-narrow { padding: 0 1.5rem; }
+  .hero { padding: 4.5rem 0 4rem; }
+  .problem-section, .guarantees-section, .modes-section,
+  .companion-section, .why-section, .market-section,
+  .roadmap-section, .manifesto-section, .waitlist-section,
+  .dark-section { padding: 4.5rem 0; }
+
+  .nav-link { display: none; }
+  .cta-btn { margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.85rem; }
+
+  .trust-stat-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .trust-divider { display: none; }
+
+  .modes-grid, .waitlist-inner,
+  .market-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  .market-divider { display: none; }
+
+  .why-grid, .roadmap-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  .guarantee-row, .feature-row {
+    grid-template-columns: 40px 1fr;
+    gap: 1rem;
+  }
+  .guarantee-body, .feature-body { grid-column: 2; padding-top: 0.5rem; }
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1 { animation: fadeUp 0.8s ease-out; }
+.hero-lead { animation: fadeUp 0.8s ease-out 0.15s both; }
+.hero-actions { animation: fadeUp 0.8s ease-out 0.3s both; }
+.eyebrow { animation: fadeUp 0.6s ease-out; }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="brand">Luminomics<span class="brand-dot"></span></a>
+      <nav>
+        <a href="#guarantees" class="nav-link">Guarantees</a>
+        <a href="#modes" class="nav-link">How it works</a>
+        <a href="#market" class="nav-link">Market</a>
+        <a href="#waitlist" class="cta-btn">Join waitlist</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     HERO — vision-led tagline (v5 deck Slide 1)
+     ========================================================= -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">OncoSignal · Vertical AI for Oncology · Pre-Seed</div>
+    <h1>Every patient deserves <em>a top oncologist's care.</em></h1>
+    <p class="hero-lead">
+      A clinical decision companion for practicing oncologists —
+      bringing the right answer within reach of every patient.
+    </p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">Request clinician access</a>
+      <a href="#guarantees" class="btn-secondary">See the four guarantees</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROBLEM (v5 deck Slide 2) — Pull-quote
+     ========================================================= -->
+<section class="problem-section">
+  <div class="container">
+    <div class="eyebrow">The problem</div>
+    <p class="pull-quote">
+      The same patient, different prescriptions —
+      <em>depending on the oncologist they meet.</em>
+    </p>
+    <p class="problem-sub">
+      The gap is not in competence. It is the structural limit of time, knowledge, and memory.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     TRUST ASYMMETRY (v5 deck Slide 4) — Hero stat
+     ========================================================= -->
+<section class="dark-section">
+  <div class="container">
+    <div class="eyebrow eyebrow-dark">Why prior attempts died</div>
+    <h2 class="on-dark">
+      Trust is decided not by the average —<br>
+      <em>but by the worst case.</em>
+    </h2>
+
+    <div class="trust-stat-grid">
+      <div>
+        <div class="hero-stat">95 / 100</div>
+        <div class="hero-stat-label">correct recommendations</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div>
+        <div class="hero-stat-counter">5 dangerous</div>
+        <div class="hero-stat-counter-sub">answers end clinician trust</div>
+        <div class="hero-stat-label">in the system — completely.</div>
+      </div>
+    </div>
+
+    <p class="trust-evidence">
+      One widely publicized oncology AI achieved 87.9% concordance with experts<sup>¹</sup> — and still failed.
+      Failure didn't come from the technology. It came from the asymmetry of trust.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOUR GUARANTEES (v5 deck Slide 5) — CORE
+     ========================================================= -->
+<section id="guarantees" class="guarantees-section">
+  <div class="container">
+    <div class="eyebrow">What we guarantee</div>
+    <h2>Four guarantees,<br><em>built into the system from day one.</em></h2>
+
+    <div class="guarantee-list">
+      <div class="guarantee-row">
+        <div class="guarantee-num">01</div>
+        <h3 class="guarantee-head">Every recommendation comes with verifiable sources.</h3>
+        <p class="guarantee-body">
+          Every clinical claim links to a primary paper or authoritative guideline.
+          The clinician verifies in one click — never accepts on faith.
+        </p>
+      </div>
+
+      <div class="guarantee-row">
+        <div class="guarantee-num">02</div>
+        <h3 class="guarantee-head">When evidence is insufficient, the system stays silent.</h3>
+        <p class="guarantee-body">
+          Plausible-sounding answers never appear. The system explicitly states &ldquo;insufficient evidence&rdquo; —
+          freeing the clinician from hallucination risk.
+        </p>
+      </div>
+
+      <div class="guarantee-row">
+        <div class="guarantee-num">03</div>
+        <h3 class="guarantee-head">Nothing appears that isn&rsquo;t in the patient&rsquo;s record.</h3>
+        <p class="guarantee-body">
+          If a mutation isn&rsquo;t in the clinician&rsquo;s input, the system never assumes it.
+          Only the clinician&rsquo;s own facts ground every output.
+        </p>
+      </div>
+
+      <div class="guarantee-row">
+        <div class="guarantee-num">04</div>
+        <h3 class="guarantee-head">No definitive diagnosis or prescription.</h3>
+        <p class="guarantee-body">
+          Output is always presented as options and considerations.
+          The final judgment remains the clinician&rsquo;s — authority is never displaced.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     INPUT MODES (v5 deck Slide 6) — Dark, two-mode
+     ========================================================= -->
+<section id="modes" class="modes-section">
+  <div class="container">
+    <div class="eyebrow eyebrow-dark">Input · How clinicians use it</div>
+    <h2 class="on-dark">One line.<br><em>Or fifty fields. Both work.</em></h2>
+
+    <div class="modes-grid">
+      <div class="mode-block">
+        <div class="mode-label">Mode A · Natural</div>
+        <h3 class="mode-title on-dark">Paste the whole case.</h3>
+        <p class="mode-desc">
+          History, symptoms, labs, imaging, molecular results — in plain prose.
+          The system extracts the structure automatically.
+        </p>
+
+        <div class="example-box">
+          <div class="example-label">Example input</div>
+          <p class="example-text">
+            &ldquo;62 y/o male, right hemicolectomy 3 yrs ago. Recent CT shows multiple liver lesions
+            (S6, S8), suspicious for mets. CEA 73.9 ng/mL (rising). KRAS G12C positive, MSS, HER2 negative.
+            ECOG 1, eGFR 75. Progression after 1L — need 2L options.&rdquo;
+          </p>
+        </div>
+      </div>
+
+      <div class="mode-block">
+        <div class="mode-label">Mode B · Structured</div>
+        <h3 class="mode-title on-dark">Enter precise fields.</h3>
+        <p class="mode-desc">
+          35+ clinical parameters — every variable the case warrants:
+        </p>
+
+        <ul class="field-list">
+          <li>Cancer type · Stage · Age · Sex · Ethnicity</li>
+          <li>Mutations · MSI · HER2 · TMB · PD-L1</li>
+          <li>ECOG · Treatment line · Renal &amp; hepatic function</li>
+          <li>Drug history · Comorbidities · Metastasis sites</li>
+          <li>Symptoms · Biomarkers · Routine lab panels</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="modes-footer-note">
+      Both modes connect to the same analysis engine — quality and safety guarantees are identical.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     PATIENT COMPANION (v5 deck Slide 7)
+     ========================================================= -->
+<section class="companion-section">
+  <div class="container">
+    <div class="eyebrow">Patient companion</div>
+    <h2>Not a one-off answer —<br><em>a companion through the patient&rsquo;s entire course.</em></h2>
+
+    <p class="companion-lead">
+      Most medical AI answers once and forgets. OncoSignal accumulates, remembers, and adapts.
+    </p>
+
+    <div class="feature-list">
+      <div class="feature-row">
+        <div class="feature-num">01</div>
+        <h3 class="feature-head">Private clinician accounts</h3>
+        <p class="feature-body">
+          Each clinician&rsquo;s patient records are accessible only to them.
+          Identifiers are scoped to the account.
+        </p>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-num">02</div>
+        <h3 class="feature-head">One patient ID, one timeline</h3>
+        <p class="feature-body">
+          Every analysis for one patient stacks chronologically: diagnosis, 1L decision, follow-up scans,
+          RECIST response, progression, 2L decision.
+        </p>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-num">03</div>
+        <h3 class="feature-head">Recommendations evolve with the patient</h3>
+        <p class="feature-body">
+          Each new lab, scan, or RECIST result updates the recommendation.
+          Next-line candidates, dose adjustments, matching trials all refresh on history.
+        </p>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-num">04</div>
+        <h3 class="feature-head">Patient-level search and recall</h3>
+        <p class="feature-body">
+          &ldquo;What did I see for this patient last year?&rdquo;
+          One patient ID unfolds the full history. The system supplements clinical memory.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     WHY NOW (v5 deck Slide 8) — 3 columns
+     ========================================================= -->
+<section class="why-section">
+  <div class="container">
+    <div class="eyebrow">Why now</div>
+    <h2>Three forces have created the moment<br><em>for vertical clinical AI.</em></h2>
+
+    <div class="why-grid">
+      <div class="why-block">
+        <div class="why-num">01</div>
+        <div class="why-divider"></div>
+        <h3 class="why-head">Safe AI is finally possible.</h3>
+        <p class="why-body">
+          Reliably refusing to answer when evidence is insufficient — without losing utility —
+          has only become technically tractable in the last 12-18 months.
+          The architectural primitives didn&rsquo;t exist before.
+        </p>
+      </div>
+
+      <div class="why-block">
+        <div class="why-num">02</div>
+        <div class="why-divider"></div>
+        <h3 class="why-head">The market is actively searching.</h3>
+        <p class="why-body">
+          82% of healthcare professionals trust clinical AI&rsquo;s potential — but only 26% actually use it<sup>²</sup>.
+          That 56-point trust-usage gap is the demand pool waiting for a system worth adopting.
+        </p>
+      </div>
+
+      <div class="why-block">
+        <div class="why-num">03</div>
+        <div class="why-divider"></div>
+        <h3 class="why-head">A generational shift in reference tools.</h3>
+        <p class="why-body">
+          Manually edited reference databases can no longer keep pace with the literature.
+          The shift from manual curation to AI-synthesized clinical reference has already begun.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     MARKET (v5 deck Slide 9) — Hero numbers
+     ========================================================= -->
+<section id="market" class="market-section">
+  <div class="container">
+    <div class="eyebrow">Market</div>
+    <h2>A fast-growing market<br><em>— with an empty seat at the top.</em></h2>
+
+    <div class="market-hero">
+      <div>
+        <div class="market-stat">$5.4B → $49.5B<sup>³</sup></div>
+        <div class="market-stat-desc">AI in oncology, global · 2026 → 2036 · CAGR 24.8%</div>
+      </div>
+      <div class="market-divider"></div>
+      <div>
+        <div class="market-stat">$2.8B → $15.3B<sup>⁴</sup></div>
+        <div class="market-stat-desc">AI clinical decision support · 2025 → 2033 · CAGR 20.89%</div>
+      </div>
+    </div>
+
+    <div class="benchmark-section">
+      <div class="benchmark-label">Comparable general medical AI</div>
+      <div class="benchmark-row">
+        <div class="benchmark-item">
+          <div class="benchmark-stat">$6B<sup>⁵</sup></div>
+          <div class="benchmark-name">OpenEvidence</div>
+        </div>
+        <div class="benchmark-item">
+          <div class="benchmark-stat">$12.8B<sup>⁶</sup></div>
+          <div class="benchmark-name">Tempus AI</div>
+        </div>
+      </div>
+      <p class="benchmark-conclusion">
+        Neither is purpose-built for the oncology decision workflow. The vertical seat is open.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ROADMAP (v5 deck Slide 10) — 4 stages
+     ========================================================= -->
+<section class="roadmap-section">
+  <div class="container">
+    <div class="eyebrow">Short term to long term</div>
+    <h2>Companion now.<br><em>Beyond knowledge, time, and memory — later.</em></h2>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-stage">
+        <div class="roadmap-year">Year 1-2</div>
+        <div class="roadmap-divider"></div>
+        <h3 class="roadmap-title">Companion validation</h3>
+        <p class="roadmap-body">
+          Real-world use by practicing oncologists. Embedded in the visit.
+          Information-only — clear of medical-device regulation.
+        </p>
+      </div>
+
+      <div class="roadmap-stage">
+        <div class="roadmap-year">Year 3-5</div>
+        <div class="roadmap-divider"></div>
+        <h3 class="roadmap-title">Clinical data accumulation</h3>
+        <p class="roadmap-body">
+          With user growth — under anonymization and consent — a feedback loop forms:
+          which recommendations were taken, which outcomes followed.
+        </p>
+      </div>
+
+      <div class="roadmap-stage">
+        <div class="roadmap-year">Year 5-7</div>
+        <div class="roadmap-divider"></div>
+        <h3 class="roadmap-title">Specialty-tuned clinical AI</h3>
+        <p class="roadmap-body">
+          Models tuned on accumulated data deliver patient-specific support —
+          beyond simple search and synthesis.
+        </p>
+      </div>
+
+      <div class="roadmap-stage">
+        <div class="roadmap-year">Year 7+</div>
+        <div class="roadmap-divider"></div>
+        <h3 class="roadmap-title">Regulated diagnostic AI</h3>
+        <p class="roadmap-body">
+          Once trust is sufficiently earned, formal medical-device approval (FDA / MFDS / CE) —
+          from information to diagnostic AI.
+        </p>
+      </div>
+    </div>
+
+    <div class="roadmap-emphasis">
+      <p class="roadmap-emphasis-text">
+        Approval is not the starting point — it is the result of trust sufficiently earned.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     MANIFESTO (v5 deck Slide 11) — Dark climax
+     ========================================================= -->
+<section class="manifesto-section">
+  <div class="container-narrow">
+    <div class="eyebrow eyebrow-dark">What we stand for</div>
+
+    <p class="manifesto-line dark-text">Every prescription —</p>
+    <p class="manifesto-line accent-text">delivered safely.</p>
+    <p class="manifesto-line accent-text">accurately.</p>
+    <p class="manifesto-line accent-text">at its best.</p>
+
+    <div class="manifesto-footer">
+      <p class="manifesto-closing">
+        The level of care once reserved for a top oncologist —
+        made available to every clinician, for every patient.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     WAITLIST
+     ========================================================= -->
+<section id="waitlist" class="waitlist-section">
+  <div class="container">
+    <div class="waitlist-inner">
+      <div>
+        <div class="eyebrow">Request access</div>
+        <h2>For <em>practicing oncologists</em><br>building the future of evidence-disciplined clinical AI.</h2>
+        <p class="lead" style="margin-top: 1.5rem;">
+          Closed beta opening soon. Priority access for medical oncologists across solid-tumor specialties.
+          Additional tumor types added on a rolling basis.
+        </p>
+      </div>
+
+      <div>
+        <form class="waitlist-form" id="waitlistForm" onsubmit="handleSubmit(event)">
+          <div>
+            <div class="form-label">Email</div>
+            <input type="email" name="email" class="form-input" placeholder="you@institution.org" required>
+          </div>
+          <div>
+            <div class="form-label">Role</div>
+            <select name="role" class="form-select" required>
+              <option value="">Select your role</option>
+              <option>Medical Oncologist</option>
+              <option>Hematologist-Oncologist</option>
+              <option>Surgical Oncologist</option>
+              <option>Radiation Oncologist</option>
+              <option>Oncology Fellow / Resident</option>
+              <option>Other clinical</option>
+              <option>Research</option>
+              <option>Industry</option>
+            </select>
+          </div>
+          <div>
+            <div class="form-label">Primary tumor focus (optional)</div>
+            <input type="text" name="tumor" class="form-input" placeholder="e.g., colorectal, lung, breast">
+          </div>
+          <button type="submit" class="btn-waitlist">Request access</button>
+          <div class="form-note">We will only contact you about beta access. No marketing.</div>
+          <div class="form-success" id="formSuccess">
+            ✓ Thank you. We will be in touch as the beta opens.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTNOTES (sources for all numerical claims)
+     ========================================================= -->
+<section class="footnotes">
+  <p>
+    <strong>¹</strong> Independent concordance evaluation, Manipal Comprehensive Cancer Centre (peer-reviewed, 2018).
+    &nbsp;&nbsp;<strong>²</strong> Wolters Kluwer Health Clinician AI Survey, 2024 — 1,000+ U.S. clinicians.
+    &nbsp;&nbsp;<strong>³</strong> ResearchAndMarkets, AI in Oncology — Global Forecast to 2036 (May 2026).
+    &nbsp;&nbsp;<strong>⁴</strong> DataM Intelligence, AI-CDSS Market (Feb 2026).
+    &nbsp;&nbsp;<strong>⁵</strong> OpenEvidence valuation, 2025.
+    &nbsp;&nbsp;<strong>⁶</strong> Tempus AI public valuation, 2024.
+  </p>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-brand">Luminomics</span>
+        &nbsp;·&nbsp; OncoSignal &nbsp;·&nbsp; Vertical AI for Oncology
+      </div>
+      <div>
+        contact@luminomics.health
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = {
+    email: formData.get('email'),
+    role: formData.get('role'),
+    tumor: formData.get('tumor') || '',
+    timestamp: new Date().toISOString()
+  };
+
+  // For now, log locally (replace with actual endpoint on deploy)
+  // TODO: POST to /api/waitlist or to a Formspree / Tally / ConvertKit endpoint
+  console.log('Waitlist submission:', data);
+
+  // Show success
+  document.getElementById('formSuccess').classList.add('visible');
+  form.querySelector('button').disabled = true;
+  form.querySelector('button').textContent = 'Submitted';
+
+  // Optional: POST to endpoint
+  // fetch('/api/waitlist', { method: 'POST', body: JSON.stringify(data) });
+}
+</script>
+
+</body>
+</html>
